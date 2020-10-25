@@ -1,0 +1,25 @@
+---
+title: "Developing Data Products, Week2 Assignment"
+author: "DomoM"
+date: "October 2020"
+output: 
+  html_document:
+    keep_md: true
+---
+
+
+## R Markdown and Leaflet
+create a map with Leaflet and generate a web page using R Markdown. The circles size reresent the area (sq mi).
+
+```{r}
+library(leaflet)
+my_trip <- data.frame(name = c("Seattle", "Mt. Rainier", "Vancouver"), 
+                      pop = c(142.07, 369.3, 114.97), 
+                      lat = c(47.608013, 46.879967, 49.246292),
+                      lng = c(-122.335167, -121.726906, -123.116226))
+my_trip %>%
+  leaflet() %>%
+  addTiles() %>%
+  addCircles(weight = 1, radius = sqrt(my_trip$pop)*5000)
+my_trip
+```
